@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   get 'new',    to: 'main#new',         as: 'new'
   get 'edit',   to: 'main#edit',        as: 'edit'
 
+  post 'destroy', to: 'recipes#destroy'
+  post  'change',  to: 'recipes#change'
 end

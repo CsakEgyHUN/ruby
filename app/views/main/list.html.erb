@@ -18,13 +18,11 @@
 
   <div class="container">
     <div class="row p-0 ">
-      <div class="col-2" style="background-color: blue;" style="width: 30%">
+      <div class="col-2" style="width: 30%">
         <% @recipes.each do |recipe| %>
           <div class="row">
             <div class="col p-0 m-0">
-              <button class="btn btn-outline-primary my-class w-100" style="background-color: darkslategrey" onclick="Call('<%= recipe.title %>')">
-                <%= recipe.title %>
-              </button>
+              <%= button_to recipe.title, {:controller => "recipes", :action => "change"}, {:method => :post, :onclick => "Call('#{recipe.title}')", class: 'btn btn-dark w-100', :params => { chose: recipe.title }}  %>
             </div>
           </div>
         <% end %>
@@ -32,7 +30,7 @@
       <div class="col-10" style="background-color: lightgray">
           <div class="row">
             <div class="col">
-             <p class="row-1" id="desc">asd</p>
+             <p class="row-1" id="desc"></p>
             </div>
           </div>
       </div>
@@ -43,9 +41,9 @@
       <div class="col-7" id="tag" style="background-color: lightgray">
 
       </div>
-      <div class="col-3" id="buttons" style="background-color: lightgray">
+      <div class="col-3 text-right" id="buttons" style="background-color: lightgray">
         <button onclick="location.href='/new'">New</button>
-        <button onclick="deletee()">Delete</button>
+        <%= button_to 'Delete', {:controller => "recipes", :action => "destroy"}, :method => :post, :params => { name: session[:chosen] } %>
       </div>
     </div>
 
@@ -53,19 +51,17 @@
 
 
   <script type="text/javascript">
-      function deletee() {
-          alert("Delete");
-      }
 
       function Call(arg1){
           let titles = []
           let descs  = []
           let tags   = []
           let i      = 0
+
           <% @recipes.each do |recipe| %>
 
-                titles[i] = "<%= recipe.title %>";
-                descs[i]  = "<%= recipe.description %>";
+                titles[i] = "<%= recipe.title %>"
+                descs[i]  = "<%= recipe.description %>"
                 tags[i]   = "<%= (recipe.tags.map{ |t| t.name }).join(", ") %>"
                 i = i + 1;
 
@@ -77,6 +73,7 @@
               }
           }
       }
+
   </script>
 
   <div class="footer">

@@ -3,7 +3,6 @@ class MainController < ApplicationController
     @recipes = Recipe.where(user:current_user)
   end
 
-
   def edit
   end
 
