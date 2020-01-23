@@ -1,0 +1,26 @@
+<div class="container" style="text-align: center">
+
+  <h1>Welcome on the Webpage</h1>
+  <p>Here you can create new recipes</p>
+
+  <% if current_user %>
+          Logged in as <%= current_user.email %>.
+          <%= link_to "Log Out", logout_path %>
+    <% end %>
+
+  <%= form_tag sessions_path do |form| %>
+    <div class="field">
+      <%= label_tag :email %>
+      <%= text_field_tag :email %>
+    </div>  <div class="field">
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+    </div>  <div class="actions">
+    <%= submit_tag "Login" %>
+    
+  </div>
+  <% end %>
+  <%= link_to "Sign Up", signup_path %>
+  <p id="alert"><%= alert %></p>
+
+</div>
