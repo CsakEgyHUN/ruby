@@ -43,6 +43,7 @@
       </div>
       <div class="col-3 text-right" id="buttons" style="background-color: lightgray">
         <button onclick="location.href='/new'">New</button>
+        <button onclick="Call2()">Edit</button>
         <%= button_to 'Delete', {:controller => "recipes", :action => "destroy"}, :method => :post, :params => { name: session[:chosen] } %>
       </div>
     </div>
@@ -51,6 +52,14 @@
 
 
   <script type="text/javascript">
+
+      function Call2(){
+          if ( '<%= session[:chosen] %>' == " " ){
+              alert("Select a receipt")
+          }else{
+              location.href='/edit'
+          }
+      }
 
       function Call(arg1){
           let titles = []

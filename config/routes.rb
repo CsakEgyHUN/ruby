@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'list',   to: 'main#list',        as: 'list'
   get 'new',    to: 'main#new',         as: 'new'
-  get 'edit',   to: 'main#edit',        as: 'edit'
+  get 'edit',   to: 'main#edit',        as: 'editform'
+
 
   post 'destroy', to: 'recipes#destroy'
   post  'change',  to: 'recipes#change'
+  post 'edit',   to: 'main#edit',        as: 'editaction'
 end
