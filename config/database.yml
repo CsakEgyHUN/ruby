@@ -23,6 +23,6 @@ test:
 production:
   <<: *default
   database: production
-  username: user
+  username: cooksuser
   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
 
